@@ -1,5 +1,3 @@
-//Note: current time portion is a little buggy -- not quite current time
-
 function secondRotation(secs) {
     //60 sec in min
     //360 deg
@@ -17,16 +15,16 @@ function minuteRotation(secs) {
 }
 
 function hourRotation(secs) {
-    //3600 sec *60
+    //12*60*60 seconds
     //360 deg
     //0.00167 deg per tick
-    let degRotationH = secs * 0.0016666667;
+    let degRotationH = secs * 0.0083333;
     return degRotationH;
 }
 
 
 function degRotation() {
-    let secs = Math.floor((Date.now() - startTime) / 1000) + (currTime);;
+    let secs = Math.floor((Date.now() - startTime) / 1000) + (currTime);
     let degS = secondRotation(secs);
     let degM = minuteRotation(secs);
     let degH = hourRotation(secs);
@@ -55,8 +53,8 @@ function setTime() {
     let hourSec = (now.getHours() * 3600);
     currTime = hourSec + minSec + sec;
     let degS = secondRotation(sec);
-    let degM = minuteRotation(minSec);
-    let degH = hourRotation(hourSec);
+    let degM = minuteRotation((minSec + sec));
+    let degH = hourRotation((hourSec + minSec + sec));
     document.getElementById('second').style.transform = `rotate(${degS}deg)`;
     document.getElementById('minute').style.transform = `rotate(${degM}deg)`;
     document.getElementById('hour').style.transform = `rotate(${degH}deg)`;
