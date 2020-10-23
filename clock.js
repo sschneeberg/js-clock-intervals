@@ -6,11 +6,22 @@ function secondRotation(seconds) {
     return degRotationS;
 }
 
-function degRotation(seconds) {
+function minuteRotation(seconds) {
+    //3600 sec
+    //360 deg
+    //0.1 deg per tick
+    let degRotationM = seconds * 0.1;
+    return degRotationM;
+}
+
+
+function degRotation() {
     seconds = Math.floor((Date.now() - startTime) / 1000);
     degS = secondRotation(seconds);
+    degM = minuteRotation(seconds);
+
     document.getElementById('second').style.transform = `rotate(${degS}deg)`;
-    return seconds;
+    document.getElementById('minute').style.transform = `rotate(${degM}deg)`;
 }
 
 //on amout of time
